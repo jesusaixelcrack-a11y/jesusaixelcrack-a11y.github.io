@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Balans - Parkour, Gimnasia Rítmica y Acrobática</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#0d9488',
+                            600: '#0f766e',
+                            700: '#115e59',
+                            800: '#134e4a',
+                            900: '#042f2e',
+                        },
+                        accent: {
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #042f2e 0%, #0f766e 50%, #022c22 100%);
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-teal-500 selection:text-white">
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo del Club -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-teal-600 to-emerald-400 flex items-center justify-center text-white text-2xl font-black shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform">
+                        CB
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-black tracking-wider text-white leading-none">CLUB BALANS</span>
+                        <span class="text-xs font-semibold text-teal-400 tracking-widest uppercase mt-1">Sede Albolote Central</span>
+                    </div>
+                </a>
+
+                <!-- Navegación Escritorio -->
+                <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-slate-300">
+                    <a href="#modalidades" class="hover:text-teal-400 transition-colors">Modalidades</a>
+                    <a href="#niveles" class="hover:text-teal-400 transition-colors">Grupos por Colores</a>
+                    <a href="#calculadora" class="hover:text-teal-400 transition-colors">Tarifas</a>
+                    <a href="#horarios" class="hover:text-teal-400 transition-colors">Horarios</a>
+                    <a href="#galeria" class="hover:text-teal-400 transition-colors">Técnicas</a>
+                    <a href="#resenas" class="hover:text-teal-400 transition-colors">Opiniones</a>
+                </nav>
+
+                <!-- Botón Acción -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-teal-500/25 transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-bolt mr-2"></i>Clase Gratuita
+                    </button>
+                </div>
+
+                <!-- Botón Móvil -->
+                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl text-slate-300 hover:bg-slate-800">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú Móvil -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-4 py-4 space-y-3">
+            <a href="#modalidades" class="block py-2 text-slate-300 font-medium hover:text-teal-400">Modalidades</a>
+            <a href="#niveles" class="block py-2 text-slate-300 font-medium hover:text-teal-400">Grupos por Colores</a>
+            <a href="#calculadora" class="block py-2 text-slate-300 font-medium hover:text-teal-400">Calculadora de Tarifas</a>
+            <a href="#horarios" class="block py-2 text-slate-300 font-medium hover:text-teal-400">Horarios Albolote</a>
+            <a href="#galeria" class="block py-2 text-slate-300 font-medium hover:text-teal-400">Galería de Técnicas</a>
+            <a href="#resenas" class="block py-2 text-slate-300 font-medium hover:text-teal-400">Opiniones Familias</a>
+            <button onclick="openModal()" class="w-full bg-teal-500 text-white py-3 rounded-xl font-bold shadow-lg">
+                Solicitar Clase de Prueba
+            </button>
+        </div>
+    </header>
+
+    <!-- SECCIÓN HERO -->
+    <section class="relative hero-gradient py-20 lg:py-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-location-dot"></i> Centro Deportivo Albolote
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none text-white">
+                        Parkour, Rítmica y <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">Acrobática</span>
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                        Entrena en el centro especializado de referencia en Granada. Formación progresiva estructurada por niveles de color para deportistas desde iniciación hasta tecnificación.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                        <button onclick="openModal()" class="bg-teal-500 hover:bg-teal-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-teal-500/30 transition-all text-center">
+                            Probar una Clase Gratis
+                        </button>
+                        <a href="#calculadora" class="border border-slate-700 hover:bg-slate-800 text-slate-200 font-semibold px-8 py-4 rounded-xl transition-all text-center">
+                            Calculadora de Cuotas
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="rounded-3xl overflow-hidden border-2 border-slate-700 shadow-2xl relative">
+                        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1000&q=80" alt="Atletas Club Balans" class="w-full h-[420px] object-cover" onerror="this.src='https://placehold.co/800x600/0f766e/ffffff?text=Club+Balans+Albolote'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl glass-card border border-slate-700 flex justify-between items-center">
+                            <div>
+                                <p class="text-xs font-semibold text-teal-400 uppercase">¿Por qué Club Balans?</p>
+                                <p class="text-sm font-bold text-white">Instalaciones de alto rendimiento con foso y materiales oficiales</p>
+                            </div>
+                            <span class="text-2xl text-teal-400"><i class="fa-solid fa-award"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LAS 3 MODALIDADES -->
+    <section id="modalidades" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-teal-400 uppercase tracking-widest mb-2">Especialidades</h2>
+                <p class="text-3xl font-black text-white sm:text-4xl">Nuestras 3 Modalidades Oficiales</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Parkour -->
+                <div class="bg-slate-800 rounded-3xl p-8 border border-slate-700 hover:border-amber-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-amber-500/10 text-amber-400 rounded-2xl flex items-center justify-center text-2xl mb-6 border border-amber-500/20">
+                            <i class="fa-solid fa-person-running"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Parkour & Freerun</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Superación de obstáculos, desplazamientos fluidos, cat leaps, wallruns y saltos mortales controlados sobre módulos modulares de madera y espuma.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-300 border-t border-slate-700/60 pt-4">
+                        <li><i class="fa-solid fa-check text-amber-400 mr-2"></i>Técnica de recepciones y caídas</li>
+                        <li><i class="fa-solid fa-check text-amber-400 mr-2"></i>Fluidez y acro-freerun</li>
+                    </ul>
+                </div>
+
+                <!-- Gimnasia Rítmica -->
+                <div class="bg-slate-800 rounded-3xl p-8 border border-slate-700 hover:border-rose-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-rose-500/10 text-rose-400 rounded-2xl flex items-center justify-center text-2xl mb-6 border border-rose-500/20">
+                            <i class="fa-solid fa-ribbon"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Gimnasia Rítmica</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Expresión corporal, flexibilidad y manejo de aparatos (cuerda, aro, pelota, mazas y cinta) con acompañamiento musical e interpretación.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-300 border-t border-slate-700/60 pt-4">
+                        <li><i class="fa-solid fa-check text-rose-400 mr-2"></i>Flexibilidad y postura gimnástica</li>
+                        <li><i class="fa-solid fa-check text-rose-400 mr-2"></i>Técnica de aparatos de rítmica</li>
+                    </ul>
+                </div>
+
+                <!-- Gimnasia Acrobática -->
+                <div class="bg-slate-800 rounded-3xl p-8 border border-slate-700 hover:border-teal-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-teal-500/10 text-teal-400 rounded-2xl flex items-center justify-center text-2xl mb-6 border border-teal-500/20">
+                            <i class="fa-solid fa-people-group"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Gimnasia Acrobática</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Construcción de pirámides humanas, elementos de coordinación en parejas o tríos (portag y ágil) y elementos individuales sobre praticable.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-300 border-t border-slate-700/60 pt-4">
+                        <li><i class="fa-solid fa-check text-teal-400 mr-2"></i>Pirámides estáticas y dinámicas</li>
+                        <li><i class="fa-solid fa-check text-teal-400 mr-2"></i>Entrenamiento en equipo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NIVELES DE COLORES POR MODALIDAD -->
+    <section id="niveles" class="py-20 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-teal-400 uppercase tracking-widest mb-2">Estructura por Colores</h2>
+                <p class="text-3xl font-black text-white sm:text-4xl">Grupos de Nivel en las 3 Modalidades</p>
+                <p class="text-slate-400 text-sm mt-3">Todas las disciplinas se organizan homogéneamente en 4 grupos de color según el grado de avance técnico.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Blanco -->
+                <div class="bg-slate-900 rounded-3xl p-6 border-2 border-slate-200/40 relative hover:shadow-lg hover:shadow-slate-200/10 transition-all">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="px-3 py-1 bg-white text-slate-950 font-black rounded-lg text-xs shadow-md">GRUPO BLANCO</span>
+                        <span class="text-xs text-slate-400 font-medium">Iniciación</span>
+                    </div>
+                    <h4 class="font-bold text-white text-lg mb-2">Base & Psico-Acro</h4>
+                    <p class="text-xs text-slate-400 mb-4">Aprender los apoyos fundamentales, volteretas, ruedas y coordinación corporal básica.</p>
+                    <div class="text-xs text-slate-200 space-y-1 font-mono bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <p><i class="fa-solid fa-clock text-teal-400 mr-1.5"></i> Hasta 7 años: <strong>1.5h/día</strong></p>
+                        <p><i class="fa-solid fa-calendar text-teal-400 mr-1.5"></i> 1 a 2 días/semana</p>
+                    </div>
+                </div>
+
+                <!-- Verde -->
+                <div class="bg-slate-900 rounded-3xl p-6 border-2 border-emerald-500/60 relative hover:shadow-lg hover:shadow-emerald-500/10 transition-all">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="px-3 py-1 bg-emerald-500 text-slate-950 font-black rounded-lg text-xs shadow-md">GRUPO VERDE</span>
+                        <span class="text-xs text-emerald-400 font-medium">Intermedio I</span>
+                    </div>
+                    <h4 class="font-bold text-white text-lg mb-2">Desarrollo Técnico</h4>
+                    <p class="text-xs text-slate-400 mb-4">Pino, paloma, saltos básicos de parkour y preparación física específica de flexibilidad.</p>
+                    <div class="text-xs text-emerald-300 space-y-1 font-mono bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <p><i class="fa-solid fa-clock text-emerald-400 mr-1.5"></i> +7 años: <strong>2.5h/día</strong></p>
+                        <p><i class="fa-solid fa-calendar text-emerald-400 mr-1.5"></i> 2 a 3 días/semana</p>
+                    </div>
+                </div>
+
+                <!-- Azul -->
+                <div class="bg-slate-900 rounded-3xl p-6 border-2 border-sky-500/60 relative hover:shadow-lg hover:shadow-sky-500/10 transition-all">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="px-3 py-1 bg-sky-500 text-white font-black rounded-lg text-xs shadow-md">GRUPO AZUL</span>
+                        <span class="text-xs text-sky-400 font-medium">Intermedio II</span>
+                    </div>
+                    <h4 class="font-bold text-white text-lg mb-2">Avanzado Promoción</h4>
+                    <p class="text-xs text-slate-400 mb-4">Flic-flac, mortales en foso, elementos combinados de rítmica y pirámides de nivel medio.</p>
+                    <div class="text-xs text-sky-300 space-y-1 font-mono bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <p><i class="fa-solid fa-clock text-sky-400 mr-1.5"></i> +7 años: <strong>2.5h/día</strong></p>
+                        <p><i class="fa-solid fa-calendar text-sky-400 mr-1.5"></i> 2 a 4 días/semana</p>
+                    </div>
+                </div>
+
+                <!-- Rojo -->
+                <div class="bg-slate-900 rounded-3xl p-6 border-2 border-rose-500/60 relative hover:shadow-lg hover:shadow-rose-500/10 transition-all">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="px-3 py-1 bg-rose-500 text-white font-black rounded-lg text-xs shadow-md">GRUPO ROJO</span>
+                        <span class="text-xs text-rose-400 font-medium">Tecnificación</span>
+                    </div>
+                    <h4 class="font-bold text-white text-lg mb-2">Alto Rendimiento</h4>
+                    <p class="text-xs text-slate-400 mb-4">Manejo acrobático avanzado, elementos de competición oficial nacional e internacional.</p>
+                    <div class="text-xs text-rose-300 space-y-1 font-mono bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <p><i class="fa-solid fa-clock text-rose-400 mr-1.5"></i> Adultos (+18): <strong>3h/día</strong></p>
+                        <p><i class="fa-solid fa-calendar text-rose-400 mr-1.5"></i> 3 a 4 días/semana</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULADORA DE TARIFAS E INSCRIPCIÓN -->
+    <section id="calculadora" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-teal-400 uppercase tracking-widest mb-2">Simulador de Cuota</h2>
+                <p class="text-3xl font-black text-white sm:text-4xl">Calculadora Transparente de Tarifas</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Panel de Selección -->
+                <div class="lg:col-span-2 bg-slate-800/80 p-8 rounded-3xl border border-slate-700 space-y-6">
+                    <!-- 1. Disciplina -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">1. Selecciona Modalidad</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button type="button" onclick="setDisciplina('parkour')" id="disc-parkour" class="disc-btn py-3 px-4 rounded-xl border border-amber-500 bg-amber-500/20 text-white font-bold text-xs sm:text-sm text-center">Parkour</button>
+                            <button type="button" onclick="setDisciplina('ritmica')" id="disc-ritmica" class="disc-btn py-3 px-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs sm:text-sm text-center">Rítmica</button>
+                            <button type="button" onclick="setDisciplina('acrobatica')" id="disc-acrobatica" class="disc-btn py-3 px-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs sm:text-sm text-center">Acrobática</button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Grupo / Color -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">2. Grupo de Nivel</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <button type="button" onclick="setNivel('blanco')" id="lvl-blanco" class="lvl-btn p-3 rounded-xl border-2 border-white bg-slate-900 text-white font-bold text-xs text-center shadow-md">Blanco (1.5h/d)</button>
+                            <button type="button" onclick="setNivel('verde')" id="lvl-verde" class="lvl-btn p-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs text-center">Verde (2.5h/d)</button>
+                            <button type="button" onclick="setNivel('azul')" id="lvl-azul" class="lvl-btn p-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs text-center">Azul (2.5h/d)</button>
+                            <button type="button" onclick="setNivel('rojo')" id="lvl-rojo" class="lvl-btn p-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs text-center">Rojo (3h/d)</button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Frecuencia Semanal -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">3. Días a la Semana</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <button type="button" onclick="setDias(1)" id="day-1" class="day-btn py-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-sm">1 día/sem</button>
+                            <button type="button" onclick="setDias(2)" id="day-2" class="day-btn py-3 rounded-xl border border-teal-500 bg-teal-500/20 text-white font-bold text-sm">2 días/sem</button>
+                            <button type="button" onclick="setDias(3)" id="day-3" class="day-btn py-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-sm">3 días/sem</button>
+                            <button type="button" onclick="setDias(4)" id="day-4" class="day-btn py-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-sm">4 días/sem</button>
+                        </div>
+                    </div>
+
+                    <!-- Descuentos -->
+                    <div class="flex items-center gap-3 pt-2">
+                        <input type="checkbox" id="hermano-check" onchange="calcularTarifa()" class="w-5 h-5 rounded accent-teal-500">
+                        <label for="hermano-check" class="text-sm font-semibold text-slate-300">Aplicar descuento segundo hermano/a (-10%)</label>
+                    </div>
+                </div>
+
+                <!-- Resumen de Cuotas -->
+                <div class="bg-gradient-to-b from-slate-800 to-slate-900 p-8 rounded-3xl border border-teal-500/30 flex flex-col justify-between shadow-2xl">
+                    <div>
+                        <span class="text-xs font-bold text-teal-400 uppercase tracking-widest">Resumen de Cuota Mensual</span>
+                        <div class="my-6">
+                            <span id="precio-mensual" class="text-5xl font-black text-white">38€</span>
+                            <span class="text-slate-400 text-sm">/ mes</span>
+                        </div>
+
+                        <div class="space-y-3.5 text-xs text-slate-300 border-t border-slate-700 pt-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-400">Modalidad:</span>
+                                <span id="resumen-disc" class="font-bold text-white uppercase px-2.5 py-1 bg-slate-950 rounded-lg border border-slate-700">Parkour</span>
+                            </div>
+
+                            <!-- Grupo Nivel Dinámico Colorido -->
+                            <div id="resumen-hrs-box" class="p-3 rounded-2xl bg-white/5 border-2 border-slate-200 transition-all duration-300 flex justify-between items-center">
+                                <span class="text-slate-300 font-semibold">Grupo Nivel:</span>
+                                <span id="resumen-hrs" class="px-3 py-1 rounded-lg text-xs font-black uppercase bg-white text-slate-950 shadow-md">
+                                    Blanco (1.5h/d)
+                                </span>
+                            </div>
+
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-400">Días semanales:</span>
+                                <span id="resumen-dias" class="font-bold text-white">2 días / sem</span>
+                            </div>
+                        </div>
+
+                        <!-- Cajón de Matrícula y Licencia Federativa -->
+                        <div class="mt-6 p-4 rounded-2xl bg-slate-950 border border-slate-700 space-y-2">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-slate-400"><i class="fa-solid fa-file-signature text-teal-400 mr-1"></i>Matrícula Anual:</span>
+                                <span class="font-bold text-white">25€ / temporada</span>
+                            </div>
+                            <div class="flex justify-between text-xs">
+                                <span class="text-slate-400"><i class="fa-solid fa-id-card text-teal-400 mr-1"></i>Seguro / Licencia:</span>
+                                <span class="font-bold text-white">35€ / año</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal()" class="w-full mt-6 bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 rounded-2xl shadow-lg transition-all text-center">
+                        Reservar Plaza en Albolote
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HORARIOS SEDE ALBOLOTE (TODOS LOS GRUPOS Y MODALIDADES) -->
+    <section id="horarios" class="py-20 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-teal-400 uppercase tracking-widest mb-2">Cuadrante Semanal Completo</h2>
+                <p class="text-3xl font-black text-white sm:text-4xl">Horarios Sede Albolote Central</p>
+                <p class="text-slate-400 text-sm mt-2">Horarios detallados para cada grupo de nivel y modalidad. Todas las plazas disponibles para clase de prueba.</p>
+            </div>
+
+            <!-- Tabla de Horarios Completa -->
+            <div class="bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden shadow-2xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-800 text-slate-300 text-xs uppercase tracking-wider">
+                                <th class="p-4 font-bold">Modalidad</th>
+                                <th class="p-4 font-bold">Grupo / Nivel</th>
+                                <th class="p-4 font-bold">Edad Referencia</th>
+                                <th class="p-4 font-bold">Horas por Día</th>
+                                <th class="p-4 font-bold">Días Semanales</th>
+                                <th class="p-4 font-bold">Horario Exacto</th>
+                                <th class="p-4 font-bold">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-sm">
+                            <!-- PARKOUR -->
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-amber-400"><i class="fa-solid fa-person-running mr-2"></i>Parkour</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-white text-slate-950 font-black rounded-lg text-xs">BLANCO</span></td>
+                                <td class="p-4 text-slate-400">Hasta 7 años</td>
+                                <td class="p-4 font-bold text-teal-400">1.5 h / día</td>
+                                <td class="p-4 text-slate-300">Lunes y Miércoles</td>
+                                <td class="p-4 text-slate-300">16:30 - 18:00 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-amber-400"><i class="fa-solid fa-person-running mr-2"></i>Parkour</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500 text-slate-950 font-black rounded-lg text-xs">VERDE</span></td>
+                                <td class="p-4 text-slate-400">+7 años (Intermedio)</td>
+                                <td class="p-4 font-bold text-teal-400">2.5 h / día</td>
+                                <td class="p-4 text-slate-300">Martes y Jueves</td>
+                                <td class="p-4 text-slate-300">17:00 - 19:30 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-amber-400"><i class="fa-solid fa-person-running mr-2"></i>Parkour</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-sky-500 text-white font-black rounded-lg text-xs">AZUL</span></td>
+                                <td class="p-4 text-slate-400">+7 años (Avanzado)</td>
+                                <td class="p-4 font-bold text-teal-400">2.5 h / día</td>
+                                <td class="p-4 text-slate-300">Lunes, Miércoles y Viernes</td>
+                                <td class="p-4 text-slate-300">17:30 - 20:00 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-amber-400"><i class="fa-solid fa-person-running mr-2"></i>Parkour</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-rose-500 text-white font-black rounded-lg text-xs">ROJO</span></td>
+                                <td class="p-4 text-slate-400">Tecnificación / Competición</td>
+                                <td class="p-4 font-bold text-teal-400">2.5 h / día</td>
+                                <td class="p-4 text-slate-300">Lunes a Jueves</td>
+                                <td class="p-4 text-slate-300">18:00 - 20:30 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+
+                            <!-- GIMNASIA RÍTMICA -->
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-rose-400"><i class="fa-solid fa-ribbon mr-2"></i>Gimnasia Rítmica</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-white text-slate-950 font-black rounded-lg text-xs">BLANCO</span></td>
+                                <td class="p-4 text-slate-400">Hasta 7 años</td>
+                                <td class="p-4 font-bold text-teal-400">1.5 h / día</td>
+                                <td class="p-4 text-slate-300">Lunes y Miércoles</td>
+                                <td class="p-4 text-slate-300">16:30 - 18:00 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-rose-400"><i class="fa-solid fa-ribbon mr-2"></i>Gimnasia Rítmica</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500 text-slate-950 font-black rounded-lg text-xs">VERDE</span></td>
+                                <td class="p-4 text-slate-400">+7 años (Escuela)</td>
+                                <td class="p-4 font-bold text-teal-400">2.5 h / día</td>
+                                <td class="p-4 text-slate-300">Martes y Jueves</td>
+                                <td class="p-4 text-slate-300">17:00 - 19:30 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-rose-400"><i class="fa-solid fa-ribbon mr-2"></i>Gimnasia Rítmica</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-sky-500 text-white font-black rounded-lg text-xs">AZUL</span></td>
+                                <td class="p-4 text-slate-400">+7 años (Promoción)</td>
+                                <td class="p-4 font-bold text-teal-400">2.5 h / día</td>
+                                <td class="p-4 text-slate-300">Lunes, Miércoles y Viernes</td>
+                                <td class="p-4 text-slate-300">17:30 - 20:00 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-rose-400"><i class="fa-solid fa-ribbon mr-2"></i>Gimnasia Rítmica</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-rose-500 text-white font-black rounded-lg text-xs">ROJO</span></td>
+                                <td class="p-4 text-slate-400">Tecnificación Oficial</td>
+                                <td class="p-4 font-bold text-teal-400">2.5 h / día</td>
+                                <td class="p-4 text-slate-300">Lunes a Jueves</td>
+                                <td class="p-4 text-slate-300">17:30 - 20:00 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+
+                            <!-- GIMNASIA ACROBÁTICA -->
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-teal-400"><i class="fa-solid fa-people-group mr-2"></i>Gimnasia Acrobática</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-white text-slate-950 font-black rounded-lg text-xs">BLANCO</span></td>
+                                <td class="p-4 text-slate-400">Hasta 7 años</td>
+                                <td class="p-4 font-bold text-teal-400">1.5 h / día</td>
+                                <td class="p-4 text-slate-300">Martes y Jueves</td>
+                                <td class="p-4 text-slate-300">16:30 - 18:00 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-teal-400"><i class="fa-solid fa-people-group mr-2"></i>Gimnasia Acrobática</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500 text-slate-950 font-black rounded-lg text-xs">VERDE</span></td>
+                                <td class="p-4 text-slate-400">+7 años (Base)</td>
+                                <td class="p-4 font-bold text-teal-400">2.5 h / día</td>
+                                <td class="p-4 text-slate-300">Lunes y Miércoles</td>
+                                <td class="p-4 text-slate-300">17:00 - 19:30 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-teal-400"><i class="fa-solid fa-people-group mr-2"></i>Gimnasia Acrobática</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-sky-500 text-white font-black rounded-lg text-xs">AZUL</span></td>
+                                <td class="p-4 text-slate-400">+7 años (Promoción A/B)</td>
+                                <td class="p-4 font-bold text-teal-400">2.5 h / día</td>
+                                <td class="p-4 text-slate-300">Martes, Jueves y Viernes</td>
+                                <td class="p-4 text-slate-300">17:30 - 20:00 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-teal-400"><i class="fa-solid fa-people-group mr-2"></i>Gimnasia Acrobática</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-rose-500 text-white font-black rounded-lg text-xs">ROJO</span></td>
+                                <td class="p-4 text-slate-400">Tecnificación y Competición</td>
+                                <td class="p-4 font-bold text-teal-400">2.5 h / día</td>
+                                <td class="p-4 text-slate-300">Lunes a Jueves</td>
+                                <td class="p-4 text-slate-300">17:30 - 20:00 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+
+                            <!-- ADULTOS -->
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-4 font-bold text-purple-400"><i class="fa-solid fa-user-ninja mr-2"></i>Adultos Multi-Acro</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-purple-500 text-white font-black rounded-lg text-xs">TODOS LOS NIVELES</span></td>
+                                <td class="p-4 text-slate-400">Adultos (+18 años)</td>
+                                <td class="p-4 font-bold text-teal-400">3 h / día</td>
+                                <td class="p-4 text-slate-300">Martes y Jueves</td>
+                                <td class="p-4 text-slate-300">19:30 - 22:30 h</td>
+                                <td class="p-4"><span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Disponible</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA DE TÉCNICAS -->
+    <section id="galeria" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold text-teal-400 uppercase tracking-widest mb-2">Galería Técnica</h2>
+                <p class="text-3xl font-black text-white sm:text-4xl">Ejercicios y Movimientos por Modalidad</p>
+            </div>
+
+            <!-- Tarjetas Técnicas -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tarjeta 1 Parkour -->
+                <div class="bg-slate-800 p-6 rounded-3xl border border-slate-700">
+                    <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-person-running"></i>
+                    </div>
+                    <span class="text-xs font-bold text-amber-400 uppercase">Parkour</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Recepción & Wall Spin</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">Técnica para disipar el impacto en caídas desde altura y giro sobre pared vertical.</p>
+                </div>
+
+                <!-- Tarjeta 2 Parkour -->
+                <div class="bg-slate-800 p-6 rounded-3xl border border-slate-700">
+                    <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-arrows-spin"></i>
+                    </div>
+                    <span class="text-xs font-bold text-amber-400 uppercase">Parkour</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Sideflip & Cat Leap</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">Salto mortal lateral sobre módulo de espuma y agarre de precisión en muro.</p>
+                </div>
+
+                <!-- Tarjeta 3 Rítmica -->
+                <div class="bg-slate-800 p-6 rounded-3xl border border-slate-700">
+                    <div class="w-12 h-12 bg-rose-500/20 text-rose-400 rounded-2xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-ribbon"></i>
+                    </div>
+                    <span class="text-xs font-bold text-rose-400 uppercase">Gimnasia Rítmica</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Rodamientos de Pelota & Aro</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">Trabajo de coordinación fina con paso del aparato por brazos, espalda y pierna.</p>
+                </div>
+
+                <!-- Tarjeta 4 Rítmica -->
+                <div class="bg-slate-800 p-6 rounded-3xl border border-slate-700">
+                    <div class="w-12 h-12 bg-rose-500/20 text-rose-400 rounded-2xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-child-reaching"></i>
+                    </div>
+                    <span class="text-xs font-bold text-rose-400 uppercase">Gimnasia Rítmica</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Saltos Zancada & Flexibilidad</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">Aperturas de piernas a 180° e hiperextensión lumbar con acompañamiento expresivo.</p>
+                </div>
+
+                <!-- Tarjeta 5 Acrobática -->
+                <div class="bg-slate-800 p-6 rounded-3xl border border-slate-700">
+                    <div class="w-12 h-12 bg-teal-500/20 text-teal-400 rounded-2xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-people-group"></i>
+                    </div>
+                    <span class="text-xs font-bold text-teal-400 uppercase">Gimnasia Acrobática</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Pirámides en Trío & Pareja</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">Estructuras estáticas de equilibrio donde los ágiles se elevan sobre la base de los portagas.</p>
+                </div>
+
+                <!-- Tarjeta 6 Acrobática -->
+                <div class="bg-slate-800 p-6 rounded-3xl border border-slate-700">
+                    <div class="w-12 h-12 bg-teal-500/20 text-teal-400 rounded-2xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-meteor"></i>
+                    </div>
+                    <span class="text-xs font-bold text-teal-400 uppercase">Gimnasia Acrobática</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Lanzamientos Dinámicos</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">Lanzamientos en el aire con ejecución de mortales antes de una recepción asistida segura.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEÑAS DE FAMILIAS -->
+    <section id="resenas" class="py-20 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-teal-400 uppercase tracking-widest mb-2">Experiencias Reales</h2>
+                <p class="text-3xl font-black text-white sm:text-4xl">Lo que dicen las familias del club</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Reseña 1 -->
+                <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 gap-1 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            "Mi hijo lleva dos años en Parkour en la sede de Albolote y el cambio en su autoconfianza y forma física ha sido increíble. Los entrenadores son súper profesionales y atentos a la seguridad."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 border-t border-slate-800 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-teal-500 text-white font-bold flex items-center justify-center text-sm">MC</div>
+                        <div>
+                            <p class="text-white text-sm font-bold">María Carmen R.</p>
+                            <p class="text-xs text-slate-500">Madre de alumno de Parkour</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reseña 2 -->
+                <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 gap-1 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            "Las instalaciones con foso son insuperables. Mi hija entrenaba Gimnasia Rítmica en otro pabellón y la diferencia técnica y metodológica con Club Balans es abismal."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 border-t border-slate-800 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-rose-500 text-white font-bold flex items-center justify-center text-sm">JG</div>
+                        <div>
+                            <p class="text-white text-sm font-bold">Javier G.</p>
+                            <p class="text-xs text-slate-500">Padre de alumna de Rítmica</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reseña 3 -->
+                <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 gap-1 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            "Empecé en el grupo de adultos de Gimnasia Acrobática sin experiencia previa. El ambiente es acogedor, cero juzgamientos y aprendes pirámides reales desde el primer día."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 border-t border-slate-800 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-amber-500 text-white font-bold flex items-center justify-center text-sm">DL</div>
+                        <div>
+                            <p class="text-white text-sm font-bold">David L.</p>
+                            <p class="text-xs text-slate-500">Atleta de Grupo Adultos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER Y CONTACTO -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-teal-500 text-white font-black flex items-center justify-center">CB</div>
+                        <span class="text-lg font-bold text-white">CLUB BALANS</span>
+                    </div>
+                    <p class="text-xs leading-relaxed">Polígono Industrial Juncaril, Calle Almuñécar nº 12, Albolote, Granada.</p>
+                </div>
+                <div>
+                    <h5 class="text-white text-sm font-bold mb-3 uppercase tracking-wider">Contacto Directo</h5>
+                    <p class="text-xs mb-1"><i class="fa-solid fa-phone text-teal-400 mr-2"></i>+34 600 000 000</p>
+                    <p class="text-xs mb-1"><i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i>Atención rápida por WhatsApp</p>
+                    <p class="text-xs"><i class="fa-solid fa-envelope text-teal-400 mr-2"></i>info@clubbalans.com</p>
+                </div>
+                <div>
+                    <h5 class="text-white text-sm font-bold mb-3 uppercase tracking-wider">Horario de Oficina</h5>
+                    <p class="text-xs mb-1">Lunes a Viernes: 16:00 - 20:30 h</p>
+                    <p class="text-xs">Sábados (Entrenamientos/Eventos): 10:00 - 13:30 h</p>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs">
+                <p>&copy; 2026 Club Deportivo Balans Albolote. Todos los derechos reservados.</p>
+                <div class="flex gap-4 mt-4 sm:mt-0 text-base text-slate-300">
+                    <a href="#" class="hover:text-teal-400"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-teal-400"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover:text-teal-400"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL CLASE DE PRUEBA -->
+    <div id="modal-prueba" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-lg w-full p-8 relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <h3 class="text-2xl font-black text-white mb-2">Solicitar Clase de Prueba</h3>
+            <p class="text-xs text-slate-400 mb-6">Completa el formulario y reservaremos tu sesión gratuita en la Sede Albolote Central.</p>
+
+            <form onsubmit="handleForm(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Nombre Completo</label>
+                    <input type="text" required placeholder="Tu nombre" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Teléfono o WhatsApp</label>
+                    <input type="tel" required placeholder="Teléfono de contacto" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-500">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Modalidad</label>
+                        <select class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-3 text-xs text-white focus:outline-none focus:border-teal-500">
+                            <option>Parkour</option>
+                            <option>Gimnasia Rítmica</option>
+                            <option>Gimnasia Acrobática</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Edad del deportista</label>
+                        <input type="number" placeholder="Ej. 8" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-500">
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 rounded-xl shadow-lg transition-all mt-2">
+                    Confirmar Reserva Gratuita
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT DE CALCULADORA Y MENÚ -->
+    <script>
+        // Variables globales de la calculadora
+        let selectedDisc = 'parkour';
+        let selectedLvl = 'blanco';
+        let selectedDays = 2;
+
+        const basePrices = {
+            blanco: { 1: 28, 2: 38, 3: 48, 4: 58 },
+            verde:  { 1: 32, 2: 44, 3: 54, 4: 64 },
+            azul:   { 1: 35, 2: 48, 3: 58, 4: 68 },
+            rojo:   { 1: 40, 2: 55, 3: 68, 4: 80 }
+        };
+
+        // Estilos e información colorida de cada nivel
+        const lvlStyles = {
+            blanco: {
+                title: 'BLANCO (1.5h/d)',
+                boxClass: 'p-3 rounded-2xl bg-white/10 border-2 border-slate-200 transition-all duration-300 flex justify-between items-center',
+                badgeClass: 'px-3 py-1 rounded-lg text-xs font-black uppercase bg-white text-slate-950 shadow-md'
+            },
+            verde: {
+                title: 'VERDE (2.5h/d)',
+                boxClass: 'p-3 rounded-2xl bg-emerald-500/10 border-2 border-emerald-500 transition-all duration-300 flex justify-between items-center',
+                badgeClass: 'px-3 py-1 rounded-lg text-xs font-black uppercase bg-emerald-500 text-slate-950 shadow-md'
+            },
+            azul: {
+                title: 'AZUL (2.5h/d)',
+                boxClass: 'p-3 rounded-2xl bg-sky-500/10 border-2 border-sky-500 transition-all duration-300 flex justify-between items-center',
+                badgeClass: 'px-3 py-1 rounded-lg text-xs font-black uppercase bg-sky-500 text-white shadow-md'
+            },
+            rojo: {
+                title: 'ROJO (3h/d)',
+                boxClass: 'p-3 rounded-2xl bg-rose-500/10 border-2 border-rose-500 transition-all duration-300 flex justify-between items-center',
+                badgeClass: 'px-3 py-1 rounded-lg text-xs font-black uppercase bg-rose-500 text-white shadow-md'
+            }
+        };
+
+        function setDisciplina(disc) {
+            selectedDisc = disc;
+            document.querySelectorAll('.disc-btn').forEach(btn => {
+                btn.className = 'disc-btn py-3 px-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs sm:text-sm text-center';
+            });
+            const active = document.getElementById('disc-' + disc);
+            if (active) {
+                const colors = {
+                    parkour: 'border-amber-500 bg-amber-500/20 text-white',
+                    ritmica: 'border-rose-500 bg-rose-500/20 text-white',
+                    acrobatica: 'border-teal-500 bg-teal-500/20 text-white'
+                };
+                active.className = `disc-btn py-3 px-4 rounded-xl border ${colors[disc]} font-bold text-xs sm:text-sm text-center`;
+            }
+            calcularTarifa();
+        }
+
+        function setNivel(lvl) {
+            selectedLvl = lvl;
+            document.querySelectorAll('.lvl-btn').forEach(btn => {
+                btn.className = 'lvl-btn p-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs text-center';
+            });
+            const active = document.getElementById('lvl-' + lvl);
+            if (active) {
+                const activeBorders = {
+                    blanco: 'border-2 border-white bg-slate-900 text-white shadow-md',
+                    verde: 'border-2 border-emerald-500 bg-slate-900 text-emerald-400 shadow-md',
+                    azul: 'border-2 border-sky-500 bg-slate-900 text-sky-400 shadow-md',
+                    rojo: 'border-2 border-rose-500 bg-slate-900 text-rose-400 shadow-md'
+                };
+                active.className = `lvl-btn p-3 rounded-xl ${activeBorders[lvl]} font-bold text-xs text-center`;
+            }
+            calcularTarifa();
+        }
+
+        function setDias(dias) {
+            selectedDays = dias;
+            document.querySelectorAll('.day-btn').forEach(btn => {
+                btn.className = 'day-btn py-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-sm';
+            });
+            const active = document.getElementById('day-' + dias);
+            if (active) active.className = 'day-btn py-3 rounded-xl border border-teal-500 bg-teal-500/20 text-white font-bold text-sm';
+            calcularTarifa();
+        }
+
+        function calcularTarifa() {
+            let total = basePrices[selectedLvl][selectedDays];
+            const hermano = document.getElementById('hermano-check').checked;
+            
+            if (hermano) {
+                total = Math.round(total * 0.9);
+            }
+
+            document.getElementById('precio-mensual').innerText = total + '€';
+            document.getElementById('resumen-disc').innerText = selectedDisc;
+
+            // Actualizar resumen colorido del nivel
+            const style = lvlStyles[selectedLvl];
+            const box = document.getElementById('resumen-hrs-box');
+            const badge = document.getElementById('resumen-hrs');
+
+            if (box && badge) {
+                box.className = style.boxClass;
+                badge.className = style.badgeClass;
+                badge.innerText = style.title;
+            }
+
+            document.getElementById('resumen-dias').innerText = selectedDays + ' días / sem';
+        }
+
+        // Modales
+        function openModal() {
+            document.getElementById('modal-prueba').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-prueba').classList.add('hidden');
+        }
+
+        function handleForm(e) {
+            e.preventDefault();
+            alert('¡Solicitud enviada con éxito! Nos pondremos en contacto contigo para confirmar tu hora de prueba gratuita.');
+            closeModal();
+        }
+
+        // Menú móvil
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
